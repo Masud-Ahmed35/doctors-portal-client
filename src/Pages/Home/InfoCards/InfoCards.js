@@ -21,7 +21,7 @@ const InfoCards = () => {
             bgClass: 'bg-accent'
         },
         {
-            id: 1,
+            id: 3,
             name: 'COntact us now',
             description: '+8801717624481',
             icon: phone,
@@ -30,14 +30,16 @@ const InfoCards = () => {
     ]
 
     return (
-        <div className='grid mt-10 gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
-            {
-                cardData.map(card => <InfoCard
-                    key={card.id}
-                    card={card}
-                ></InfoCard>)
-            }
-        </div>
+        <section>
+            <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+                {
+                    cardData.map(card => <InfoCard
+                        key={card.id}
+                        card={card}
+                    ></InfoCard>)
+                }
+            </div>
+        </section>
     );
 };
 
