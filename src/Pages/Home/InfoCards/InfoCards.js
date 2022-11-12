@@ -7,21 +7,21 @@ import InfoCard from './InfoCard';
 const InfoCards = () => {
     const cardData = [
         {
-            id: 1,
+            _id: 1,
             name: 'Opening Hours',
             description: 'Open at 9.00am to 5.00pm everyday',
             icon: clock,
             bgClass: 'bg-gradient-to-r from-primary to-secondary'
         },
         {
-            id: 2,
+            _id: 2,
             name: 'Visit our location',
             description: 'Brooklyn, NY 10036, United States',
             icon: marker,
             bgClass: 'bg-accent'
         },
         {
-            id: 3,
+            _id: 3,
             name: 'COntact us now',
             description: '+8801717624481',
             icon: phone,
@@ -34,7 +34,7 @@ const InfoCards = () => {
             <div className='grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     cardData.map(card => <InfoCard
-                        key={card.id}
+                        key={card._id}
                         card={card}
                     ></InfoCard>)
                 }

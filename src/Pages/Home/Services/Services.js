@@ -8,19 +8,19 @@ const Services = () => {
 
     const servicesData = [
         {
-            id: 1,
+            _id: 1,
             title: 'Fluoride Treatment',
             image: fluoride,
             description: 'Fluoride varnish can be applied to both baby teeth and adult teeth by a dentist.'
         },
         {
-            id: 2,
+            _id: 2,
             title: 'Cavity Filling',
             image: cavity,
             description: 'The process of filling cavities is a simple one that can be done at your dentist office.'
         },
         {
-            id: 3,
+            _id: 3,
             title: 'Teeth Whitening',
             image: whitening,
             description: 'Tooth whitening  is the process of lightening the color of human teeth.'
@@ -36,7 +36,7 @@ const Services = () => {
             <div className='grid gap-[34px] grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
                 {
                     servicesData.map(data => <Service
-                        key={data.id}
+                        key={data._id}
                         data={data}
                     ></Service>)
                 }
