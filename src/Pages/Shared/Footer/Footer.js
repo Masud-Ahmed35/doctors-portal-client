@@ -4,7 +4,7 @@ import footer from '../../../assets/images/footer.png';
 
 const Footer = () => {
     return (
-        <footer className="p-10 mt-14"
+        <footer className="p-10 mt-14 font-serif"
             style={{
                 background: `url(${footer})`,
                 backgroundSize: 'cover',
@@ -32,9 +32,9 @@ const Footer = () => {
                     <Link to='/' className="link link-hover">Cookie policy</Link>
                 </div>
             </div>
-            <footer className="footer footer-center p-4 mt-14">
+            <footer className="footer footer-center p-4 mt-12">
                 <div>
-                    <p>Copyright © 2022 - All right reserved by ACME Industries Ltd</p>
+                    <p className='text-sm font-mono'>Copyright © 2022 - All right reserved by <span className='italic font-bold'>Professor M</span></p>
                 </div>
             </footer>
         </footer>
