@@ -9,11 +9,12 @@ const AppointmentOption = ({ appointmentOption, setTreatment }) => {
                 <div className="card-body text-center">
                     <h2 className="text-secondary font-semibold text-xl">{name}</h2>
                     <p className='my-2 text-sm'>{slots.length > 0 ? slots[0] : 'Try Another Day'}</p>
-                    <p className='mb-2 text-sm'>{slots.length > 0 ? `${slots.length} Spaces Available` : 'No Space Available'}</p>
+                    <p className='mb-2 text-sm'>{slots.length} {slots.length < 2 ? 'Space' : 'Spaces'} Available</p>
                     <div className="w-3/4 mx-auto">
                         <label
+                            disabled={slots.length === 0}
                             htmlFor="booking-modal"
-                            className="btn btn-secondary bg-gradient-to-r from-secondary to-primary text-white"
+                            className={`btn btn-secondary bg-gradient-to-r from-secondary to-primary text-white`}
                             onClick={() => setTreatment(appointmentOption)}
                         >Book Appointment</label>
                     </div>

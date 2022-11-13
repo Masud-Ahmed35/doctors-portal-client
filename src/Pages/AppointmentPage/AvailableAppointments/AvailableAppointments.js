@@ -21,7 +21,7 @@ const AvailableAppointments = ({ selectedDate }) => {
             <p
                 className='text-secondary text-[22px] text-center font-semibold'
             >
-                Available Appointments on {format(selectedDate, 'PP')}
+                Available Appointments on {format(selectedDate, 'PPP')}
             </p>
             <div className='mt-20 grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 lg:w-[85%] lg:mx-auto'>
                 {
@@ -33,7 +33,11 @@ const AvailableAppointments = ({ selectedDate }) => {
                 }
             </div>
             {
-                treatment && <BookingModal treatment={treatment}></BookingModal>
+                treatment && <BookingModal
+                    treatment={treatment}
+                    setTreatment={setTreatment}
+                    selectedDate={selectedDate}
+                ></BookingModal>
             }
         </section>
     );
