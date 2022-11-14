@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const NavBar = () => {
+    const { user, logOut } = useContext(AuthContext);
+
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => toast.success('Logout Successful'))
+            .catch(error => toast.error(error.message))
+    }
 
     const menuItems = <>
         <li><Link to='/'>Home</Link></li>
@@ -9,7 +19,12 @@ const NavBar = () => {
         <li><Link to='/appointment'>Appointment</Link></li>
         <li><Link to='/reviews'>Reviews</Link></li>
         <li><Link to='/contact-us'>Contact Us</Link></li>
-        <li><Link to='/login'>Login</Link></li>
+        {
+            user?.uid ?
+                <li><button onClick={handleLogOut} className='btn btn-outline rounded-xl normal-case'>Sign Out</button></li>
+                :
+                <li><Link to='/login'>Login</Link></li>
+        }
     </>
 
     return (
