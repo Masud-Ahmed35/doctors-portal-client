@@ -13,10 +13,11 @@ const Login = () => {
         <section className='h-[600px] flex justify-center items-center'>
             <div className='w-96 shadow-lg rounded-2xl p-7'>
                 <h2 className='text-xl text-center mb-8'>Login</h2>
+
                 <form onSubmit={handleSubmit(handleLogin)}>
                     <div className="form-control mb-2 w-full max-w-xs">
                         <label className="label"><span className="label-text">Email</span></label>
-                        <input type="text"
+                        <input type="email"
                             {...register("email", {
                                 required: true
                             })}
@@ -38,6 +39,7 @@ const Login = () => {
                     </div>
                     <input type="submit" value='Login' className='btn btn-accent w-full rounded-lg text-white py-3 mt-7' />
                 </form>
+
                 <p className='text-sm text-center mt-[10px]'>New to Doctors Portal? <Link to='/signup' className='text-secondary'>Create new account</Link></p>
                 <div className="divider">OR</div>
                 <button className="btn btn-outline w-full mt-2">Continue With Google</button>
