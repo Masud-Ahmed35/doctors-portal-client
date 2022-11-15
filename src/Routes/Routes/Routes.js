@@ -6,6 +6,7 @@ import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 import Home from "../../Pages/Home/Home/Home";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/Login/SignUp";
+import PrivateRoutes from "../PrivateRoutes/PrivateRoutes";
 
 const router = createBrowserRouter([
     {
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoutes><Dashboard></Dashboard></PrivateRoutes>,
     }
 ]);
 

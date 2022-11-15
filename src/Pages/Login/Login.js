@@ -1,12 +1,27 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn } = useContext(AuthContext);
+    const { signIn, googleSignIn } = useContext(AuthContext);
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/';
+
+    const googleProvider = new GoogleAuthProvider();
+    const handleLoginWithGoogle = () => {
+        googleSignIn(googleProvider)
+            .then(result => {
+                console.log(result.user);
+                toast.success("Login Successful With Google");
+                navigate(from, { replace: true });
+            })
+    }
 
     const handleLogin = data => {
         console.log(data);
@@ -15,6 +30,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                navigate(from, { replace: true });
                 toast.success('Login Successful');
             })
             .catch(error => toast.error(error.message))
@@ -53,7 +69,7 @@ const Login = () => {
 
                 <p className='text-sm text-center mt-[10px]'>New to Doctors Portal? <Link to='/signup' className='text-secondary'>Create new account</Link></p>
                 <div className="divider">OR</div>
-                <button className="btn btn-outline w-full mt-2">Continue With Google</button>
+                <button onClick={handleLoginWithGoogle} className="btn btn-outline w-full mt-2">Continue With Google</button>
             </div>
         </section>
     );
