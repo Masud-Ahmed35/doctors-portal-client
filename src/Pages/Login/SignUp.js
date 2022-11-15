@@ -6,7 +6,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { createUser } = useContext(AuthContext);
+    const { createUser, updateUser } = useContext(AuthContext);
 
     const handleSignup = data => {
         console.log(data);
@@ -14,10 +14,21 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                 toast.success('Successfully Created Your Account');
+
+                const userInfo = {
+                    displayName: data?.name
+                }
+                updateUser(userInfo)
+                    .then(() => {
+                        console.log(user);
+                    })
+                    .catch(error => {
+                        toast.error(error.message)
+                    })
             })
-            .catch(error => console.error(error))
+            .catch(error => toast.error(error.message))
     }
 
     return (
@@ -44,7 +55,7 @@ const SignUp = () => {
                             })}
                             aria-invalid={errors?.email ? 'true' : 'false'}
                             className="input input-bordered w-full" />
-                        {errors?.email && <p role='alert' className='text-red-600'>Email Address id required</p>}
+                        {errors?.email && <p role='alert' className='text-red-600'>Email Address is required</p>}
                     </div>
                     <div className="form-control w-full max-w-xs">
                         <label className="label"><span className="label-text">Password</span></label>
