@@ -37,10 +37,13 @@ const BookingModal = ({ treatment, setTreatment, selectedDate, refetch }) => {
             .then(data => {
                 console.log(data);
 
-                if (data.insertedId) {
+                if (data.acknowledged) {
                     setTreatment(null);
                     toast.success('Data Inserted Successfully');
                     refetch();
+                }
+                else {
+                    toast.error(data.message);
                 }
             })
     }
