@@ -7,11 +7,12 @@ import { useQuery } from '@tanstack/react-query';
 
 const AvailableAppointments = ({ selectedDate }) => {
     const [treatment, setTreatment] = useState(null);
+    const date = format(selectedDate, 'PPP');
 
-    const { data: appointmentOptions = [] } = useQuery({
-        queryKey: ['appointmentOptions'],
+    const { data: appointmentOptions = [], refetch } = useQuery({
+        queryKey: ['appointmentOptions', date],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:7007/appointmentOptions`)
+            const res = await fetch(`http://localhost:7007/appointmentOptions?date=${date}`)
             const data = res.json();
             // console.log(data);
             return data;
@@ -39,6 +40,7 @@ const AvailableAppointments = ({ selectedDate }) => {
                     treatment={treatment}
                     setTreatment={setTreatment}
                     selectedDate={selectedDate}
+                    refetch={refetch}
                 ></BookingModal>
             }
         </section>
