@@ -1,15 +1,23 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
+import useToken from '../../Hooks/useToken';
 
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
     const location = useLocation();
+
+    const [createdUserEmail, setCreatedUserEmail] = useState('');
+    const [token] = useToken(createdUserEmail);
     const navigate = useNavigate();
+
+    if (token) {
+        navigate('/');
+    }
 
     const from = location.state?.from?.pathname || '/';
 
@@ -29,7 +37,6 @@ const SignUp = () => {
         createUser(data.email, data.password)
             .then(result => {
                 const user = result.user;
-                // console.log(user);
                 toast.success('Successfully Created Your Account');
 
                 const userInfo = {
@@ -57,10 +64,10 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log('Save-User Data', data);
-                navigate(from, { replace: true });
+                setCreatedUserEmail(email);
             })
     }
+
 
     return (
         <section className='h-[700px] flex justify-center items-center'>
