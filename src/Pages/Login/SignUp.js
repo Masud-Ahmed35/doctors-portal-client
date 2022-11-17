@@ -1,7 +1,7 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthProvider';
 import useToken from '../../Hooks/useToken';
@@ -9,7 +9,6 @@ import useToken from '../../Hooks/useToken';
 const SignUp = () => {
     const { register, formState: { errors }, handleSubmit } = useForm();
     const { createUser, updateUser, googleSignIn } = useContext(AuthContext);
-    const location = useLocation();
 
     const [createdUserEmail, setCreatedUserEmail] = useState('');
     const [token] = useToken(createdUserEmail);
@@ -19,15 +18,13 @@ const SignUp = () => {
         navigate('/');
     }
 
-    const from = location.state?.from?.pathname || '/';
-
     const googleProvider = new GoogleAuthProvider();
     const handleLoginWithGoogle = () => {
         googleSignIn(googleProvider)
             .then(result => {
                 console.log(result.user);
                 toast.success("Login Successful With Google");
-                navigate(from, { replace: true });
+                navigate('/');
             })
     }
 
