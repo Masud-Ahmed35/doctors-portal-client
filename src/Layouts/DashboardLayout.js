@@ -16,9 +16,9 @@ const DashboardLayout = () => {
                 <div className="drawer-content">
                     <Outlet></Outlet>
                 </div>
-                <div className="drawer-side">
+                <div className="drawer-side mt-5">
                     <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-72 bg-base-100 text-base-content">
+                    <ul className="menu p-4 w-72 text-base-content">
                         <li><Link to='/dashboard'>My Appointment</Link></li>
                         {
                             isAdmin && <>
